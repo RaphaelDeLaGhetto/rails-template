@@ -45,8 +45,8 @@ def apply_template!
 
   after_bundle do
     directory 'db/migrate', 'db/migrate'
-    rake("db:migrate")
-    rake("db:setup")
+#    rake("db:migrate")
+#    rake("db:setup")
 
     git :init
   end
