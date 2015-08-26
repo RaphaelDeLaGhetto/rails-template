@@ -81,8 +81,8 @@ end
 # setup devise
 #
 def setup_devise
-  generate :devise, 'install'
-  generate :devise, 'Agent'
+#  generate :devise, 'install'
+#  generate :devise, 'Agent'
 end
 
 
