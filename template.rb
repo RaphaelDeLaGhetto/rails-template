@@ -4,9 +4,9 @@
 RAILS_REQUIREMENT = "~> 4.2.0"
 
 def apply_template!
-  assert_minimum_rails_version
-  assert_valid_options
-  assert_postgresql
+#  assert_minimum_rails_version
+#  assert_valid_options
+#  assert_postgresql
   add_template_repository_to_source_path
   
   # Bootstrap
@@ -53,7 +53,7 @@ def apply_template!
 end
 
 #require "fileutils"
-#require "shellwords"
+require "shellwords"
 
 # Add this template directory to source_paths so that Thor actions like
 # copy_file and template resolve against our source files. If this file was
@@ -69,58 +69,56 @@ def add_template_repository_to_source_path
       tempdir
     ].map(&:shellescape).join(" ")
   else
-  puts 'HERE', source_paths.inspect, File.dirname(__FILE__)
     source_paths.unshift(File.dirname(__FILE__))
-  puts 'NOW HERE', source_paths.inspect, File.dirname(__FILE__)
   end
 end
 
 #
 # assert_minimum_rails_version
 #
-def assert_minimum_rails_version
-  requirement = Gem::Requirement.new(RAILS_REQUIREMENT)
-  rails_version = Gem::Version.new(Rails::VERSION::STRING)
-  return if requirement.satisfied_by?(rails_version)
-
-  prompt = "This template requires Rails #{RAILS_REQUIREMENT}. "\
-           "You are using #{rails_version}. Continue anyway?"
-  exit 1 if no?(prompt)
-end
-
+#def assert_minimum_rails_version
+#  requirement = Gem::Requirement.new(RAILS_REQUIREMENT)
+#  rails_version = Gem::Version.new(Rails::VERSION::STRING)
+#  return if requirement.satisfied_by?(rails_version)
 #
-# assert_valid_options
+#  prompt = "This template requires Rails #{RAILS_REQUIREMENT}. "\
+#           "You are using #{rails_version}. Continue anyway?"
+#  exit 1 if no?(prompt)
+#end
 #
-# Bail out if user has passed in contradictory generator options.
-def assert_valid_options
-  valid_options = {
-    :skip_gemfile => false,
-    :skip_bundle => false,
-    :skip_git => false,
-    :skip_test_unit => false,
-    :edge => false
-  }
-  valid_options.each do |key, expected|
-    next unless options.key?(key)
-    actual = options[key]
-    unless actual == expected
-      fail Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
-    end
-  end
-end
-
-def assert_postgresql
-  puts "THIS SHOULD FAIL---------------------------------------------------------------------------", IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
-  return if IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
-  fail Rails::Generators::Error,
-    "This template requires PostgreSQL, "\
-    "but the pg gem isn’t present in your Gemfile."
-end
-
-def gemfile_requirement(name)
-  @original_gemfile ||= IO.read("Gemfile")
-  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*).*$/, 1]
-  req && req.gsub("'", %(")).strip.sub(/^,\s*"/, ', "')
-end
+##
+## assert_valid_options
+##
+## Bail out if user has passed in contradictory generator options.
+#def assert_valid_options
+#  valid_options = {
+#    :skip_gemfile => false,
+#    :skip_bundle => false,
+#    :skip_git => false,
+#    :skip_test_unit => false,
+#    :edge => false
+#  }
+#  valid_options.each do |key, expected|
+#    next unless options.key?(key)
+#    actual = options[key]
+#    unless actual == expected
+#      fail Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
+#    end
+#  end
+#end
+#
+#def assert_postgresql
+#  puts "THIS SHOULD FAIL---------------------------------------------------------------------------", IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
+#  return if IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
+#  fail Rails::Generators::Error,
+#    "This template requires PostgreSQL, "\
+#    "but the pg gem isn’t present in your Gemfile."
+#end
+#
+#def gemfile_requirement(name)
+#  @original_gemfile ||= IO.read("Gemfile")
+#  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*).*$/, 1]
+#  req && req.gsub("'", %(")).strip.sub(/^,\s*"/, ', "')
+#end
 
 apply_template!
