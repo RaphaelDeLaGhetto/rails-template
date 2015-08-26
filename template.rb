@@ -82,7 +82,7 @@ end
 #
 def setup_devise
   generate(:devise, 'install')
-#  generate :devise, 'Agent'
+  generate(:devise, 'Agent')
 end
 
 
