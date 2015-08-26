@@ -81,9 +81,9 @@ end
 # setup devise
 #
 def setup_devise
-  run 'rails generate devise:install'
-#  generate('devise:install')
-#  generate(:devise, 'Agent')
+#  run 'rails generate devise:install'
+  generate('devise:install')
+  generate(:devise, 'Agent')
 end
 
 
