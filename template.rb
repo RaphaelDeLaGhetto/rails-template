@@ -82,6 +82,7 @@ end
 #
 def setup_devise
 #  run 'rails generate devise:install'
+  run 'spring stop'
   generate('devise:install')
   generate(:devise, 'Agent')
 end
