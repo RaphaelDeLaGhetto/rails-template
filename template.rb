@@ -44,7 +44,7 @@ def apply_template!
 
 
   after_bundle do
-    directory 'db/migrate', 'db/migrate'
+#    directory 'db/migrate', 'db/migrate'
 #    rake("db:migrate")
 #    rake("db:setup")
 
@@ -66,7 +66,7 @@ def add_template_repository_to_source_path
     git :clone => [
       "--quiet",
       "https://github.com/RaphaelDeLaGhetto/rails-template",
-      tempdir
+      aempdir
     ].map(&:shellescape).join(" ")
   else
     source_paths.unshift(File.dirname(__FILE__))
