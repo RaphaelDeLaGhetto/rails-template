@@ -40,7 +40,7 @@ def apply_template!
 #  template "DEPLOYMENT.md.tt"
 
   # Config
-  copy_file 'config/application.yml', 'config/application.yml'
+#  copy_file 'config/application.yml', 'config/application.yml'
 
 
   after_bundle do
