@@ -50,7 +50,7 @@ def apply_template!
     setup_devise
 #    directory 'db/migrate', 'db/migrate'
     rake("db:migrate")
-#    rake("db:setup")
+    rake("db:setup")
 
     git :init
   end
