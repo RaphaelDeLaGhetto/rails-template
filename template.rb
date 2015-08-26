@@ -66,7 +66,7 @@ def add_template_repository_to_source_path
     git :clone => [
       "--quiet",
       "https://github.com/RaphaelDeLaGhetto/rails-template",
-      aempdir
+      tempdir
     ].map(&:shellescape).join(" ")
   else
     source_paths.unshift(File.dirname(__FILE__))
