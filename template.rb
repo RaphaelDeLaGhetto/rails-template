@@ -32,6 +32,9 @@ def apply_template!
   # browserify
   gem 'browserify-rails'
   
+  # Authentication
+  gem 'devise'
+  
   gem_group :test do
     gem "shoulda"
   end
@@ -44,8 +47,9 @@ def apply_template!
 
 
   after_bundle do
+    setup_devise
 #    directory 'db/migrate', 'db/migrate'
-#    rake("db:migrate")
+    rake("db:migrate")
 #    rake("db:setup")
 
     git :init
@@ -72,6 +76,16 @@ def add_template_repository_to_source_path
     source_paths.unshift(File.dirname(__FILE__))
   end
 end
+
+#
+# setup devise
+#
+def setup_devise
+  generate :devise, 'install'
+  generate :devise, 'Agent',
+end
+
+
 
 #
 # assert_minimum_rails_version
